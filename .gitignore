@@ -1,0 +1,12 @@
+.idea
+kubeum.iml
+
+vendor
+my_manifests
+
+bin/
+debian/.debhelper/
+debian/debhelper-build-stamp
+debian/files
+debian/getkubeconfig.substvars
+debian/getkubeconfig/
