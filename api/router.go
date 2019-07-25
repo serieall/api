@@ -11,7 +11,6 @@ var router *mux.Router
 func initializeRouter() *mux.Router {
 	router = mux.NewRouter().StrictSlash(true)
 
-	router.PathPrefix("/api/v1.0")
 	router.Use(middlewares.IsAuthenticate)
 
 	for _, route := range routes {

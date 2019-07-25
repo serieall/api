@@ -1,6 +1,6 @@
 package: github.com/youkoulayley/serieall-api-go
 import:
-- package: github.com/nats-io/stan.go/
+- package: github.com/nats-io/stan.go
   version: ^0.5.0
-- package: github.com/nats-io/nats.go/
-  version: ^1.8.0
+- package: github.com/nats-io/nkeys
+  version: master

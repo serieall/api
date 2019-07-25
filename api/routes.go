@@ -12,4 +12,10 @@ var routes = models.Routes{
 		"/health",
 		controllers.GetHealth,
 	},
+	models.Route{
+		"images",
+		"POST",
+		"/images",
+		controllers.PublishImage,
+	},
 }
