@@ -6,11 +6,20 @@ import (
 )
 
 var routes = models.Routes{
+	// HEALTH
 	models.Route{
 		"health",
 		"GET",
 		"/health",
 		controllers.GetHealth,
+	},
+
+	// IMAGES
+	models.Route{
+		"images",
+		"GET",
+		"/images",
+		controllers.GetImage,
 	},
 	models.Route{
 		"images",
