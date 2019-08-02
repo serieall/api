@@ -5,5 +5,5 @@ type NatsImage struct {
 	Name      string `json:"name"`
 	CropType  string `json:"crop_type"`
 	Crop      string `json:"crop"`
-	ForceCrop string `json:"force_crop"`
+	ForceCrop bool   `json:"force_crop"`
 }
