@@ -35,10 +35,6 @@ func GetImage(w http.ResponseWriter, r *http.Request) {
 	var imageFolder = bootstrap.GetConfig().ImageFolder
 	var natsImage models.NatsImage
 
-	imageSizePath := imageFolder + "/" + getImage.Size + "/" + getImage.Name + "_" + getImage.Type + ".jpg"
-	imageOriginalPath := imageFolder + "/original/" + getImage.Name + "_" + getImage.Type + ".jpg"
-	imageDefaultPath := imageFolder + "/original/default.jpg"
-
 	if getImage.Type == "poster" {
 		natsImage.Url = "https://www.thetvdb.com/banners/posters/" + strconv.Itoa(getImage.Id) + "-1.jpg"
 		natsImage.CropType = "poster"
@@ -46,6 +42,11 @@ func GetImage(w http.ResponseWriter, r *http.Request) {
 		natsImage.Url = "https://www.thetvdb.com/banners/graphical/" + strconv.Itoa(getImage.Id) + "-g2.jpg"
 		natsImage.CropType = "banner"
 	}
+
+	imageSizePath := imageFolder + "/" + getImage.Size + "/" + getImage.Name + "-" + getImage.Type + ".jpg"
+	imageOriginalPath := imageFolder + "/original/" + getImage.Name + "-" + getImage.Type + ".jpg"
+	imageDefaultPath := imageFolder + "/original/default.jpg"
+
 	natsImage.Name = getImage.Name
 	natsImage.Crop = "middle"
 	natsImage.ForceCrop = true
