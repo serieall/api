@@ -33,6 +33,7 @@ func GetImage(w http.ResponseWriter, r *http.Request) {
 
 	var imageUrl models.ImageURL
 	var imageFolder = bootstrap.GetConfig().ImageFolder
+	var imagePath = bootstrap.GetConfig().ImagePath
 	var natsImage models.NatsImage
 
 	if getImage.Type == "poster" {
@@ -43,24 +44,34 @@ func GetImage(w http.ResponseWriter, r *http.Request) {
 		natsImage.CropType = "banner"
 	}
 
-	imageSizePath := imageFolder + "/" + getImage.Size + "/" + getImage.Name + "-" + getImage.Type + ".jpg"
-	imageOriginalPath := imageFolder + "/original/" + getImage.Name + "-" + getImage.Type + ".jpg"
-	imageDefaultPath := imageFolder + "/original/default.jpg"
+	imageSizeFile := imageFolder + "/" + getImage.Size + "/" + getImage.Name + "-" + getImage.Type + ".jpg"
+	imageOriginalFile := imageFolder + "/original/" + getImage.Name + "-" + getImage.Type + ".jpg"
+	imageDefaultFile := imageFolder + "/" + getImage.Size + "/default.jpg"
+
+	imageSizePath := imagePath + "/" + getImage.Size + "/" + getImage.Name + "-" + getImage.Type + ".jpg"
+	imageOriginalPath := imagePath + "/original/" + getImage.Name + "-" + getImage.Type + ".jpg"
+	imageDefaultPath := imagePath + "/original/default.jpg"
+	imageDefaultSizePath := imagePath + "/" + getImage.Size + "/default.jpg"
 
 	natsImage.Name = getImage.Name
 	natsImage.Crop = "middle"
 	natsImage.ForceCrop = true
 
-	_, imageSize := os.Stat(imageSizePath)
+	_, imageSize := os.Stat(imageSizeFile)
 	if os.IsNotExist(imageSize) {
-		_, imageOriginal := os.Stat(imageOriginalPath)
+		_, imageOriginal := os.Stat(imageOriginalFile)
 		if os.IsNotExist(imageOriginal) {
 			err = publishImage(natsImage)
 			if err != nil {
 				w.WriteHeader(http.StatusInternalServerError)
 				return
 			}
-			imageUrl.Url = imageDefaultPath
+			_, imageSize := os.Stat(imageSizeFile)
+			if os.IsNotExist(imageSize) {
+				imageUrl.Url = imageDefaultPath
+			} else {
+				imageUrl.Url = imageDefaultSizePath
+			}
 		} else {
 			imageUrl.Url = imageOriginalPath
 			err = publishImage(natsImage)
