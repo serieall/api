@@ -12,9 +12,11 @@ import (
 	"strconv"
 )
 
+// GetImage return the URL of the image to print
 func GetImage(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json;charset=UTF-8")
 
+	// Get the Body
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		logrus.Error(err)
@@ -36,17 +38,25 @@ func GetImage(w http.ResponseWriter, r *http.Request) {
 	var imagePath = bootstrap.GetConfig().ImagePath
 	var natsImage models.NatsImage
 
-	if getImage.Type == "poster" {
-		natsImage.Url = "https://www.thetvdb.com/banners/posters/" + strconv.Itoa(getImage.Id) + "-1.jpg"
-		natsImage.CropType = "poster"
+	if len(getImage.Url) > 0 {
+		natsImage.Url = getImage.Url
+		if getImage.Type == "poster" {
+			natsImage.CropType = "poster"
+		} else {
+			natsImage.CropType = "banner"
+		}
 	} else {
-		natsImage.Url = "https://www.thetvdb.com/banners/graphical/" + strconv.Itoa(getImage.Id) + "-g2.jpg"
-		natsImage.CropType = "banner"
+		if getImage.Type == "poster" {
+			natsImage.Url = "https://www.thetvdb.com/banners/posters/" + strconv.Itoa(getImage.Id) + "-1.jpg"
+			natsImage.CropType = "poster"
+		} else {
+			natsImage.Url = "https://www.thetvdb.com/banners/graphical/" + strconv.Itoa(getImage.Id) + "-g2.jpg"
+			natsImage.CropType = "banner"
+		}
 	}
 
 	imageSizeFile := imageFolder + "/" + getImage.Size + "/" + getImage.Name + "-" + getImage.Type + ".jpg"
 	imageOriginalFile := imageFolder + "/original/" + getImage.Name + "-" + getImage.Type + ".jpg"
-	imageDefaultFile := imageFolder + "/" + getImage.Size + "/default.jpg"
 
 	imageSizePath := imagePath + "/" + getImage.Size + "/" + getImage.Name + "-" + getImage.Type + ".jpg"
 	imageOriginalPath := imagePath + "/original/" + getImage.Name + "-" + getImage.Type + ".jpg"

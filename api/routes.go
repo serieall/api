@@ -13,10 +13,9 @@ var routes = models.Routes{
 		"/health",
 		controllers.GetHealth,
 	},
-
 	// IMAGES
 	models.Route{
-		"images",
+		"images_url",
 		"GET",
 		"/images",
 		controllers.GetImage,
