@@ -3,9 +3,9 @@ package controllers
 import (
 	"encoding/json"
 	"github.com/nats-io/stan.go"
+	"github.com/serieall/api/api/bootstrap"
+	"github.com/serieall/api/api/models"
 	"github.com/sirupsen/logrus"
-	"github.com/youkoulayley/serieall-api-go/api/bootstrap"
-	"github.com/youkoulayley/serieall-api-go/api/models"
 	"io/ioutil"
 	"net/http"
 	"os"

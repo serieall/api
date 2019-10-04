@@ -1,24 +1,15 @@
 package main
 
 import (
+	"github.com/serieall/api/api/bootstrap"
 	"github.com/sirupsen/logrus"
-	"github.com/youkoulayley/serieall-api-go/api/bootstrap"
-	"io/ioutil"
-	"log"
 	"net/http"
 	"strconv"
 	"strings"
 )
 
 func main() {
-	// Get the version number
-	file, err := ioutil.ReadFile("VERSION")
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	v := string(file)
-	logrus.Info("Série-All API is loading in v", v)
+	logrus.Info("Série-All API is loading in v0.1")
 
 	// Get the configuration
 	cfg := bootstrap.InitConfig()

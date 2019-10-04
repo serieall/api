@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/youkoulayley/serieall-api-go/api/controllers"
-	"github.com/youkoulayley/serieall-api-go/api/models"
+	"github.com/serieall/api/api/controllers"
+	"github.com/serieall/api/api/models"
 )
 
 var routes = models.Routes{

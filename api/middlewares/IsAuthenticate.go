@@ -2,8 +2,8 @@ package middlewares
 
 import (
 	"encoding/json"
-	"github.com/youkoulayley/serieall-api-go/api/models"
-	"github.com/youkoulayley/serieall-api-go/api/bootstrap"
+	"github.com/serieall/api/api/models"
+	"github.com/serieall/api/api/bootstrap"
 	"net/http"
 	"strings"
 )

@@ -1,4 +1,4 @@
-package: github.com/youkoulayley/serieall-api-go
+package: github.com/serieall/api
 import:
 - package: github.com/nats-io/stan.go
   version: ^0.5.0

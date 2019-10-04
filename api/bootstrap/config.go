@@ -2,8 +2,8 @@ package bootstrap
 
 import (
 	"github.com/caarlos0/env"
+	"github.com/serieall/api/api/models"
 	"github.com/sirupsen/logrus"
-	"github.com/youkoulayley/serieall-api-go/api/models"
 )
 
 var Config models.Config

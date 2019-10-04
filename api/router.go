@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/gorilla/mux"
-	"github.com/youkoulayley/serieall-api-go/api/middlewares"
+	"github.com/serieall/api/api/middlewares"
 	"net/http"
 )
 

@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"encoding/json"
-	"github.com/youkoulayley/serieall-api-go/api/models"
+	"github.com/serieall/api/api/models"
 	"net/http"
 )
 
